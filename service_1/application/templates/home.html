@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>
+                CharGen
+            </title>
+        </head>
+        <body>
+            <h1>
+                Character Archetype Generator Website
+            </h1>
+            <div>
+                <form method="POST" action="" novalidate>
+                    <fieldset>
+                        <div>
+                            <legend>Select your attributes:</legend>
+                            <br><label for="name">New name:</label><br>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="type">Type:</label><br>
+                            <select id="type" name="type" required><br>
+                                <option value="ranged">Ranged</option>
+                                <option value="melee">Melee</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="perk">Perk:</label><br>
+                            <select id="perk" name="perk" required><br>
+                                <option value="speed">Speed</option>
+                                <option value="Heavy">Heavy</option>
+                            </select>
+                            <input type="submit" value="Submit">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </body>
+    </html>    
