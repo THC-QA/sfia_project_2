@@ -7,10 +7,10 @@ app = Flask(__name__)
 def home():
     if request.method == "POST":
         details = request.form
-        name = request["name"]
-        combat = request["type"]
-        perk = request["perk"]
-        return name, combat, perk, redirect(url_for("/browse")
+        name = details["name"]
+        combat = details["type"]
+        perk = details["perk"]
+        return redirect(url_for("/browse")
     return render_template('home.html')
 
 @app.route('/browse', methods=['GET'])
