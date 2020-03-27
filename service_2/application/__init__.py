@@ -1,17 +1,19 @@
 from flask import Flask, request
-import requests
+from requests import post, get
+from json import dumps
 from random import choice
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    melee_skills = []
-    ranged_skills = []
-    combat = requests.
-    if combat == "melee":
-        skill = melee_skills.choice()
-        return skill
+    melee_skills = ["bash", "slash", "pierce", "sweep", "scrape", "tap", "block", "parry", "dual weilding", "riposte"]
+    ranged_skills = ["power shot", "spin", "curve", "multi-shot", "ricochet", "quick shot", "precise shot", "collision", "scatter shot", "point-blank shot"]
+    combat = request.cookies.get("type") # get("http://localhost:5000/") # request.json
+    print(combat)
+    if combat["type"] == "melee":
+        skill = {"skill" : choice(melee_skills)}
     else:
-        skill = ranged_skills.choice()
-        return skill
+        skill = {"skill" : choice(ranged_skills)}
+    # post("http://localhost:5003/", json=skill)
+    return skill

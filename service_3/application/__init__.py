@@ -1,17 +1,19 @@
 from flask import Flask, request
-import requests
+from requests import post, get
+from json import dumps
 from random import choice
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    speed_modifiers = []
-    ranged_skills = []
-    combat = requests.
-    if combat == "speed":
-        modifier = speed_modifiers.choice()
-        return skill
+    speed_modifiers = ["snap", "lightning", "quick", "flying", "speed"]
+    heavy_modifiers = ["cleaving", "explosive", "impact", "destructive", "heavy"]
+    perk = request.cookies.get("perk") # get("http://localhost:5000/") # request.json
+    print(perk)
+    if perk["perk"] == "speed":
+        modifier = {"modifier" : choice(speed_modifiers)}
     else:
-        modifier = heavy_modifiers.choice()
-        return skill
+        modifier = {"modifier" : choice(heavy_modifiers)}
+    # post("http://localhost:5003/", json=modifier)
+    return modifier
