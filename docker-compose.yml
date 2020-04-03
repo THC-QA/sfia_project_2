@@ -1,0 +1,20 @@
+version: "0.1"
+services:
+    frontend:
+        build:
+            context: ./service_1
+            dockerfile: Dockerfile
+        env_file:
+            - ./api.env
+    service_2:
+        build:
+            context: ./service_2
+            dockerfile: Dockerfile
+    service_3:
+        build:
+            context: ./service_3
+            dockerfile: Dockerfile
+    service_4:
+        build:
+            context: ./service_4
+            dockerfile: Dockerfile
