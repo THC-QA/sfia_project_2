@@ -4,17 +4,32 @@ services:
         build:
             context: ./service_1
             dockerfile: Dockerfile
+        image: thcqa/fronted
         env_file:
             - ./api.env
-    service_2:
+        networks:
+            - character_hive
+    skill:
         build:
             context: ./service_2
             dockerfile: Dockerfile
-    service_3:
+        image: thcqa/skill
+        networks:
+            - character_hive
+    modifier:
         build:
             context: ./service_3
             dockerfile: Dockerfile
-    service_4:
+        image: thcqa/modifier
+        networks:
+            - character_hive
+    title:
         build:
             context: ./service_4
             dockerfile: Dockerfile
+        image: thcqa/title
+        networks:
+            - character_hive
+networks:
+    character_hive:
+        driver: overlay
