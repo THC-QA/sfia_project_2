@@ -22,7 +22,7 @@ pipeline{
                 sh '. /var/lib/jenkins/workspace/sfia_project_2/venv/bin/activate'
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
-                sh 'pip3 install ./requirements.txt'
+                sh 'pip3 install /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
                 sh 'pip3 install docker-compose'
                 sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
