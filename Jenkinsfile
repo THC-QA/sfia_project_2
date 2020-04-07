@@ -12,7 +12,6 @@ pipeline{
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
                 sh 'sudo usermod -aG docker jenkins'
-                sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
         }
         stage("testingInstall"){
@@ -23,7 +22,9 @@ pipeline{
                 sh 'source ./venv/bin/activate'
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
-                sh 'pip3 install ./tests/requirements.txt'
+                sh 'pip3 install ./requirements.txt'
+                sh 'pip3 install docker-compose'
+                sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
         }
         stage("urlTesting"){

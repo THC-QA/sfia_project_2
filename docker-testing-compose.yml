@@ -23,6 +23,8 @@ services:
             - ingress
     nginx:
         image: thcqa/nginxchar
+        ports:
+            - "80:80"
         networks:
             - ingress
         depends_on:
