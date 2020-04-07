@@ -41,7 +41,7 @@ pipeline{
         stage("dbTesting"){
             steps{
                 sh 'echo "Probing MySQL Database"'
-                sh '. ./test.env'
+                sh '. ~/.bashrc'
                 sh 'python3 -m coverage run -m pytest tests/db_testing.py'
                 sh 'python3 -m coverage report'
             }
