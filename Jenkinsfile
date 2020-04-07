@@ -5,7 +5,12 @@ pipeline{
         stage("testEnv"){
             steps{
                 sh 'echo "dev-test local install"'
-                sh 'sudo apt install docker-ce -y'
+                sh 'sudo apt update -y'
+                sh 'sudo apt-get remove docker docker-engine docker.io'
+                sh 'sudo apt install docker.io -y'
+                sh 'sudo systemctl start docker'
+                sh 'sudo systemctl enable docker'
+                sh 'sudo systemctl status docker'
                 sh 'newgrp docker'
                 sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
