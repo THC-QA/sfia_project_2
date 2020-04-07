@@ -19,7 +19,7 @@ pipeline{
                 sh 'echo "install testing dependencies"'
                 sh 'sudo apt install python3-venv -y'
                 sh 'python3 -m venv venv'
-                sh 'source ./venv/bin/activate'
+                sh 'source ~/workspace/sfia_project_2/venv/bin/activate'
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
                 sh 'pip3 install ./requirements.txt'
