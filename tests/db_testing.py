@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Call config variables from pre-assigned environmentals, check Jenkinsfile for preferred source
 
-app.config['SECRET_KEY'] = os.environ["SECRETKEY"]
+app.config['SECRET_KEY'] = os.environ['SECRETKEY']
 app.config['MYSQL_HOST'] = os.environ['MYSQLHOST']
 app.config['MYSQL_USER'] = os.environ['MYSQLUSER']
 app.config['MYSQL_PASSWORD'] = os.environ['MYSQLPASSWORD']
