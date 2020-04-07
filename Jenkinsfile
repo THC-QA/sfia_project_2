@@ -15,6 +15,8 @@ pipeline{
                 sh 'sudo usermod -aG docker $USER'
                 sh 'whoami'
                 sh 'groups'
+                sh 'sudo newgrp docker'
+                sh 'groups'
                 sh 'docker ps'
                 // sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml character_stack'
             }
