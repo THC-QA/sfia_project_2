@@ -6,7 +6,7 @@ pipeline{
             steps{
                 sh 'echo "dev-test local install"'
                 sh 'sudo apt update -y'
-                sh 'sudo apt-get remove docker docker-engine docker.io'
+                sh 'sudo apt-get remove docker docker-engine docker.io -y'
                 sh 'sudo apt install docker.io -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
