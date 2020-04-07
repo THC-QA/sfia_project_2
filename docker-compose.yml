@@ -1,14 +1,19 @@
-version: "0.1"
+version: '3.7'
+networks:
+    character_hive:
+        driver: overlay
 services:
     frontend:
         build:
             context: ./service_1
             dockerfile: Dockerfile
-        image: thcqa/fronted
+        image: thcqa/frontend
         env_file:
             - ./api.env
         networks:
             - character_hive
+        deploy:
+            replicas: 1
     skill:
         build:
             context: ./service_2
@@ -16,13 +21,17 @@ services:
         image: thcqa/skill
         networks:
             - character_hive
+        deploy:
+            replicas: 1
     modifier:
         build:
-            context: ./service_3
+            context: ./service_1
             dockerfile: Dockerfile
         image: thcqa/modifier
         networks:
             - character_hive
+        deploy:
+            replicas: 1
     title:
         build:
             context: ./service_4
@@ -30,6 +39,21 @@ services:
         image: thcqa/title
         networks:
             - character_hive
-networks:
-    character_hive:
-        driver: overlay
+        deploy:
+            replicas: 1
+    nginx:
+        build:
+            context: ./NGINX
+            dockerfile: Dockerfile
+        image: thcqa/nginxchar
+        ports:
+            - "80:80"
+        networks:
+            - character_hive
+        depends_on:
+            - frontend
+            - skill
+            - modifier
+            - title
+        deploy:
+            replicas: 1

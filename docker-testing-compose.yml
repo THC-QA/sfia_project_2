@@ -1,0 +1,32 @@
+version: '3.7'
+networks:
+    ingress:
+        driver: overlay
+services:
+    frontend:
+        image: thcqa/frontend
+        env_file:
+            - ./test.env
+        networks:
+            - ingress
+    skill:
+        image: thcqa/skill
+        networks:
+            - ingress
+    modifier:
+        image: thcqa/modifier
+        networks:
+            - ingress
+    title:
+        image: thcqa/title
+        networks:
+            - ingress
+    nginx:
+        image: thcqa/nginxchar
+        networks:
+            - ingress
+        depends_on:
+            - frontend
+            - skill
+            - modifier
+            - title

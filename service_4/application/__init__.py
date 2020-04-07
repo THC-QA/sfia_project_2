@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    titles = ["the Brave", "the Bold", "the Beautiful", "of Ill Repute", "Drunkard and Wastrel", "Inveterate Flirt", "the Terrible", "the Destroyer", "'Blackheart'", "Slayer of {0}".format(choice(enemies))]
     enemies = ["Kings", "Dragons", "Demons", "Maidens", "Trolls", "Goblins", "Unicorns", "Beastmen", "Vampires", "the Undead", "Taxmen", "the Poor", "Passing Innocents"]
+    titles = ["the Brave", "the Bold", "the Beautiful", "of Ill Repute", "Drunkard and Wastrel", "Inveterate Flirt", "the Terrible", "the Destroyer", "'Blackheart'", "Slayer of {0}".format(choice(enemies))]
     name = request.args.get("name")
     print(name)
     if 'test' not in name:

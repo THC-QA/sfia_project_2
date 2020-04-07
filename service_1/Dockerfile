@@ -9,6 +9,4 @@ RUN python3 -m venv venv
 RUN . venv/bin/activate
 RUN pip3 install -r requirements.txt
 
-EXPOSE 5000
-
 ENTRYPOINT python3 app.py
