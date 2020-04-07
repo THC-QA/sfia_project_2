@@ -24,7 +24,7 @@ pipeline{
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
                 sh 'pip3 install -r /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
-                // sh 'docker swarm leave -f'
+                sh 'docker swarm leave -f'
                 sh 'docker swarm init'
                 sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml test_character_stack'
             }
