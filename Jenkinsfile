@@ -12,6 +12,7 @@ pipeline{
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
+                sh 'sudo groupadd docker'
                 sh 'sudo usermod -aG docker $USER'
                 sh 'whoami'
                 sh 'groups'
