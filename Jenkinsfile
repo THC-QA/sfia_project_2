@@ -11,7 +11,7 @@ pipeline{
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
-                sh 'newgrp docker'
+                sh 'sudo usermod -aG docker Jenkins'
                 sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
         }
