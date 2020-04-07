@@ -61,7 +61,6 @@ def test_characters_coherence():
         assert col == 2
 
 def test_character_insert():
-    data = ""
     with app.app_context():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM test_characters;")
@@ -75,10 +74,21 @@ def test_character_insert():
         cur.close()
         assert abs(start - end) == 1
 
-def test_recipe_deletion():
+def test_character_update():
     with app.app_context():
         cur = mysql.connection.cursor()
-        cur.execute("DELETE IGNORE FROM test_characters WHERE recipe_name = 'place_holder';")
+        cur.execute("UPDATE test_characters SET data='test_value' WHERE data='TEST VALUE';")
+        mysql.connection.commit()
+        cur.execute("SELECT * FROM test_characters WHERE data='test_value';")
+        update = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.close()
+        assert update
+
+def test_character_deletion():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("DELETE IGNORE FROM test_characters WHERE data = 'test_value';")
         mysql.connection.commit()
         cur.execute("SELECT * FROM test_characters;")
         deleted = len(cur.fetchall()) + 1

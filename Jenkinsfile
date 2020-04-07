@@ -5,7 +5,8 @@ pipeline{
         stage("testEnv"){
             steps{
                 sh 'echo "dev-test local install"'
-                sh 'apt-get install docker-ce -y'
+                sh 'sudo apt install docker-ce -y'
+                sh 'newgrp docker'
                 sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
             }
         }
@@ -17,17 +18,30 @@ pipeline{
                 sh 'source ./venv/bin/activate'
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
+                sh 'pip3 install ./tests/requirements.txt'
             }
         }
         stage("urlTesting"){
             steps{
-                sh 
+                sh 'echo "Pinging URLs"'
+                sh 'python3 -m coverage run -m pytest tests/url_testing.py'
+                sh 'python3 -m coverage report'
             }
 
         }
         stage("dbTesting"){
             steps{
-                sh 
+                sh 'echo "Probing MySQL Database"'
+                sh 'source ./test.env'
+                sh 'python3 -m coverage run -m pytest tests/db_testing.py'
+                sh 'python3 -m coverage report'
+            }
+        }
+        stage("seleniumTesting"){
+            steps{
+                sh 'echo "Mining the Selenium'
+                // sh 'python3 -m coverage run -m pytest tests/db_testing.py'
+                // sh 'python3 -m coverage report'
             }
         }
     }
