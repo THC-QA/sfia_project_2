@@ -13,12 +13,6 @@ pipeline{
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
                 sh 'sudo usermod -aG docker $USER'
-                sh 'whoami'
-                sh 'groups'
-                sh 'sudo newgrp docker'
-                sh 'groups'
-                sh 'docker ps'
-                // sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml character_stack'
             }
         }
         stage("testingInstall"){
@@ -30,6 +24,9 @@ pipeline{
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
                 sh 'pip3 install -r /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
+                sh 'docker swarm leave -f'
+                sh 'docker swarm init'
+                sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml test_character_stack'
             }
         }
         stage("urlTesting"){
@@ -53,6 +50,7 @@ pipeline{
                 sh 'echo "Mining the Selenium'
                 // sh 'python3 -m coverage run -m pytest tests/db_testing.py'
                 // sh 'python3 -m coverage report'
+                sh 'docker stack rm test_character_stack'
             }
         }
     }
