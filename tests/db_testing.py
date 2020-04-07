@@ -43,7 +43,7 @@ def test_create_characters():
         cur.execute("SHOW tables;")
         start = len(cur.fetchall())
         mysql.connection.commit()
-        cur.execute("CREATE TABLE test_characters(id INT(5) NOT NULL AUTO_INCREMENT, data VARCHAR(100));")
+        cur.execute("CREATE TABLE test_characters(id INT(5) NOT NULL AUTO_INCREMENT, data VARCHAR(100), PRIMARY KEY(id));")
         mysql.connection.commit()
         cur.execute("SHOW tables;")
         end = len(cur.fetchall())
