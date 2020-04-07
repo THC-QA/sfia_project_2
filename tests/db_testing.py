@@ -38,12 +38,12 @@ def test_empty():
 def test_create_characters():
     with app.app_context():
         cur = mysql.connection.cursor()
-        cur.execute("DROP TABLE IF EXISTS characters;")
+        cur.execute("DROP TABLE IF EXISTS test_characters;")
         mysql.connection.commit()
         cur.execute("SHOW tables;")
         start = len(cur.fetchall())
         mysql.connection.commit()
-        cur.execute("CREATE TABLE test_characters(id INT(5) NOT NULL AUTO_INCREMENT, data VARCHAR(100);")
+        cur.execute("CREATE TABLE test_characters(id INT(5) NOT NULL AUTO_INCREMENT, data VARCHAR(100));")
         mysql.connection.commit()
         cur.execute("SHOW tables;")
         end = len(cur.fetchall())
