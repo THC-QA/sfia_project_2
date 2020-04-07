@@ -17,7 +17,7 @@ pipeline{
         stage("testingInstall"){
             steps{
                 sh 'echo "install testing dependencies"'
-                sh 'apt-get install python3-venv -y'
+                sh 'sudo apt install python3-venv -y'
                 sh 'python3 -m venv venv'
                 sh 'source ./venv/bin/activate'
                 sh 'pip3 install pytest'
