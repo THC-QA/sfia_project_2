@@ -24,7 +24,7 @@ pipeline{
                 sh 'pip3 install coverage'
                 sh 'pip3 install -r /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
                 sh 'pip3 install docker-compose'
-                sh 'docker stack deploy --compose-file docker-testing-compose.yml character_stack'
+                sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml character_stack'
             }
         }
         stage("urlTesting"){
