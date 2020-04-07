@@ -19,7 +19,7 @@ pipeline{
                 sh 'echo "install testing dependencies"'
                 sh 'sudo apt install python3-venv -y'
                 sh 'python3 -m venv venv'
-                sh 'source /var/lib/jenkins/workspace/sfia_project_2/venv/bin/activate'
+                sh '. /var/lib/jenkins/workspace/sfia_project_2/venv/bin/activate'
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
                 sh 'pip3 install ./requirements.txt'
@@ -38,7 +38,7 @@ pipeline{
         stage("dbTesting"){
             steps{
                 sh 'echo "Probing MySQL Database"'
-                sh 'source ./test.env'
+                sh '. ./test.env'
                 sh 'python3 -m coverage run -m pytest tests/db_testing.py'
                 sh 'python3 -m coverage report'
             }
