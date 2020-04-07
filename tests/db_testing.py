@@ -66,7 +66,7 @@ def test_character_insert():
         cur.execute("SELECT * FROM test_characters;")
         start = len(cur.fetchall())
         mysql.connection.commit()
-        cur.execute("INSERT IGNORE INTO test_characters(data) VALUES 'TEST VALUE';")
+        cur.execute("INSERT IGNORE INTO test_characters(data) VALUES('TEST VALUE');")
         mysql.connection.commit()
         cur.execute("SELECT * FROM test_characters;")
         end = len(cur.fetchall())
