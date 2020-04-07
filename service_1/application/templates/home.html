@@ -38,5 +38,47 @@
             <div>
                 {{content}}
             </div>
+            <div>
+                <h3>UPDATE</h3>
+                <div>
+                 <form method="POST" action="" validate>
+                     <fieldset>
+                         <div>
+                             <legend>Update a character name:</legend>
+                             <label for="data">Data: </label><br>
+                             <select id="data" name="data"><br>
+                                 {%for c in characters%}
+                                 <option value="{{c[0]}}">{{c[1]}}</option>
+                                 {%endfor%}
+                             </select>
+                         </div>
+                         <div>
+                             <br><label for="new_data">New data:</label><br>
+                             <input type="text" id="new_data" name="new_data" required>
+                             <input type="submit" value="Submit">
+                         </div>
+                     </fieldset>
+                 </form>
+                </div>
+             </div>
+             <div>
+                 <h3>DELETE</h3>
+                 <div>
+                     <form method="POST" action="" validate>
+                         <fieldset>
+                             <div>
+                                 <legend>Delete a character:</legend>
+                                 <label for="data">Data:</label><br>
+                                 <select id="data" name="data"><br>
+                                     {%for c in characters%}
+                                     <option value="{{c[0]}}">{{c[1]}}</option>
+                                     {%endfor%}
+                                 </select>
+                                 <input type="submit" value="Delete">
+                             </div>
+                         </fieldset>
+                     </form>
+                    </div>
+             </div>
         </body>
     </html>    

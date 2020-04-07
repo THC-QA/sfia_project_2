@@ -17,17 +17,32 @@ mysql = MySQL(app)
 def home():
     if request.method == "POST":
         details = request.form
-        name = details["name"]
-        combat = details["type"]
-        perk = details["perk"]
-        print(name)
-        print(combat)
-        print(perk)
-        content = get("http://title:5003/?name={0}&combat={1}&perk={2}".format(name,combat,perk)).text
-        print(content)
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT IGNORE INTO characters(data) VALUES (%s);", [content])
+        content = "Please Submit"
+        if "name" in details:
+            name = details["name"]
+            combat = details["type"]
+            perk = details["perk"]
+            content = get("http://title:5003/?name={0}&combat={1}&perk={2}".format(name,combat,perk)).text
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT IGNORE INTO characters(data) VALUES (%s);", [content])
+        elif "new_data" in details:
+            data = details["data"]
+            new_data = details["new_data"]
+            cur = mysql.connection.cursor()
+            cur.execute('UPDATE characters SET data = "{0}" WHERE id = {1};'.format(new_data,data))
+        else:
+            data = details["data"]
+            cur = mysql.connection.cursor()
+            cur.execute('DELETE IGNORE FROM characters WHERE id = {};'.format(data))
+        mysql.connection.commit()
+        cur.execute("SELECT * FROM characters;")
+        characters = cur.fetchall()
         mysql.connection.commit()
         cur.close()
-        return render_template('home.html', content=content)
-    return render_template('home.html', content="Please Submit")
+        return render_template('home.html', content=content, characters=characters)
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM characters;")
+    characters = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
+    return render_template('home.html', content="Please Submit", characters=characters)
