@@ -41,6 +41,7 @@ pipeline{
         stage("dbTesting"){
             steps{
                 sh 'echo "Probing MySQL Database"'
+                sh 'chmod 775 ./obfscripts/*'
                 sh './obfscripts/dbTesting.sh'
             }
         }
