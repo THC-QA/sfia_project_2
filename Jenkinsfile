@@ -12,7 +12,7 @@ pipeline{
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
-                sh 'sudo usermod -aG docker jenkins'
+                sh 'sudo usermod -aG docker $USER'
                 sh 'whoami'
                 sh 'groups'
                 sh 'docker ps'
