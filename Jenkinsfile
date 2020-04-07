@@ -13,6 +13,8 @@ pipeline{
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
                 sh 'sudo usermod -aG docker jenkins'
+                sh 'whoami'
+                sh 'groups'
                 sh 'docker ps'
                 // sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml character_stack'
             }
