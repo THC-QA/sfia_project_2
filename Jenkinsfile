@@ -47,7 +47,7 @@ pipeline{
         }
         stage("seleniumTesting"){
             steps{
-                sh 'echo "Mining the Selenium'
+                sh 'echo "Mining the Selenium"'
                 // sh 'python3 -m coverage run -m pytest tests/db_testing.py'
                 // sh 'python3 -m coverage report'
                 sh 'docker stack rm test_character_stack'
