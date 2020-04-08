@@ -45,7 +45,7 @@ pipeline{
         stage("dbTesting"){
             steps{
                 sh 'echo "Probing MySQL Database"'
-                sh 'chmod 775 ./obfscripts/*'
+                sh 'chmod +x ./obfscripts/*'
                 sh './obfscripts/dbTesting.sh'
             }
         }
@@ -59,8 +59,8 @@ pipeline{
         }
         stage("ansibleSetup"){
             steps{
-                sh '. ~/.ssh/config'
-                sh 'ansible-playbook -i inventory.cfg playbook.yml'
+                sh 'echo "Antsy Ansible"'
+                sh './obfscripts/ansibleSetup.sh'
             }
         }
         stage("swarmDeploy"){
