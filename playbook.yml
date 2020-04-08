@@ -1,5 +1,5 @@
 - name: install docker
-  hosts: servers
+  hosts: all
   become: true
   roles:
     - docker_install
