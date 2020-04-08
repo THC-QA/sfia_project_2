@@ -13,7 +13,9 @@ pipeline{
                 sh 'sudo systemctl enable docker'
                 sh 'sudo systemctl status docker'
                 sh 'sudo usermod -aG docker $USER'
-                sh 'sudo apt get install ansible'
+                sh 'sudo apt install software-properties-common'
+                sh 'sudo apt-add-repository --yes --update ppa:ansible/ansible'
+                sh 'sudo apt install ansible'
                 sh 'ansible --version'
             }
         }
