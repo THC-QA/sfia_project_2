@@ -59,6 +59,7 @@ pipeline{
         }
         stage("ansibleSetup"){
             steps{
+                sh '. ~/.ssh/config'
                 sh 'ansible-playbook -i inventory.cfg playbook.yml'
             }
         }
