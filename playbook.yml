@@ -2,16 +2,16 @@
   hosts: servers
   become: true
   roles:
-    - docker-installation
+    - docker_install
 
 - name: initialise docker swarm
   hosts: swarm-manager
   become: true
   roles:
-    - docker-swarm-init
+    - docker_init
 
 - name: add workers to the swarm
   hosts: swarm-workers
   become: true
   roles:
-    - docker-swarm-add-workers
+    - docker_add_swarm
