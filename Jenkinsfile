@@ -24,6 +24,8 @@ pipeline{
                 sh 'pip3 install pytest'
                 sh 'pip3 install coverage'
                 sh 'pip3 install -r /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
+                sh 'pip3 install --user ansible'
+                sh 'ansible --version'
                 sh 'docker swarm leave -f'
                 sh 'docker swarm init'
                 sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml test_character_stack'
@@ -51,6 +53,19 @@ pipeline{
                 // sh 'python3 -m coverage run -m pytest tests/db_testing.py'
                 // sh 'python3 -m coverage report'
                 sh 'docker stack rm test_character_stack'
+            }
+        }
+        stage("ansibleSetup"){
+            steps{
+                sh 'ansible-playbook -i inventory.cfg playbook.yml'
+            }
+        }
+        stage("swarmDeploy"){
+            agent {label 'manager-node'}
+            steps{
+                sh 'newgrp docker'
+                sh 'docker stack rm character_stack'
+                sh 'docker stack deploy --compose-file docker-compose.yml character_stack'
             }
         }
     }
