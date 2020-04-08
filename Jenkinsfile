@@ -7,6 +7,8 @@ pipeline{
                 sh 'echo "dev-test local install"'
                 sh 'sudo apt update -y'
                 // sh 'sudo apt-get remove docker docker-engine docker.io -y'
+                sh 'sudo apt-get remove docker* containerd*'
+                sh 'sudo apt-get install containerd.io'
                 sh 'sudo apt install docker.io -y'
                 sh 'sudo apt install docker-compose -y'
                 sh 'sudo systemctl start docker'
