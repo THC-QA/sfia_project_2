@@ -70,7 +70,7 @@ pipeline{
             steps{
                 // sh 'newgrp docker'
                 // sh 'docker stack rm character_stack'
-                sh 'docker stack deploy --compose-file docker-compose.yml character_stack'
+                sh 'sudo docker stack deploy --compose-file docker-compose.yml character_stack'
             }
         }
     }
