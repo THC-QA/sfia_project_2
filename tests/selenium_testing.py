@@ -19,3 +19,5 @@ mysql = MySQL(app)
 
 driver = webdriver.Chrome()
 driver.get("https://localhost/")
+
+if foo do x:
