@@ -31,7 +31,7 @@ def home():
             cur = mysql.connection.cursor()
             cur.execute('UPDATE characters SET data = "{0}" WHERE id = {1};'.format(new_data,data))
         else:
-            data = details["data"]
+            data = details["datad"]
             cur = mysql.connection.cursor()
             cur.execute('DELETE IGNORE FROM characters WHERE id = {};'.format(data))
         mysql.connection.commit()

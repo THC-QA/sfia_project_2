@@ -30,12 +30,12 @@
                                 <option value="speed">Speed</option>
                                 <option value="heavy">Heavy</option>
                             </select>
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Submit" id="submit_new">
                         </div>
                     </fieldset>
                 </form>
             </div>
-            <div>
+            <div id="display_content">
                 {{content}}
             </div>
             <div>
@@ -55,7 +55,7 @@
                          <div>
                              <br><label for="new_data">New data:</label><br>
                              <input type="text" id="new_data" name="new_data" required>
-                             <input type="submit" value="Submit">
+                             <input type="submit" value="Submit" id="submit_update">
                          </div>
                      </fieldset>
                  </form>
@@ -68,13 +68,13 @@
                          <fieldset>
                              <div>
                                  <legend>Delete a character:</legend>
-                                 <label for="data">Data:</label><br>
-                                 <select id="data" name="data"><br>
+                                 <label for="datad">Data:</label><br>
+                                 <select id="datad" name="datad"><br>
                                      {%for c in characters%}
                                      <option value="{{c[0]}}">{{c[1]}}</option>
                                      {%endfor%}
                                  </select>
-                                 <input type="submit" value="Delete">
+                                 <input type="submit" value="Delete" id="submit_delete">
                              </div>
                          </fieldset>
                      </form>

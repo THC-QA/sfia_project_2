@@ -1,6 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, url_for
 from flask_mysqldb import MySQL
 from selenium import webdriver
+from time import sleep
 import os
 
 app = Flask(__name__)
@@ -17,7 +18,105 @@ mysql = MySQL(app)
 
 # Start stable test loop
 
-driver = webdriver.Chrome()
-driver.get("https://localhost/")
+def multiselect_set_selections(driver, element_id, labels):
+    el = driver.find_element_by_id(element_id)
+    for option in el.find_elements_by_tag_name('option'):
+        if option.text in labels:
+            option.click()
 
-if foo do x:
+def multiselect_set_selections_invert(driver, element_id, label):
+    el = driver.find_element_by_id(element_id)
+    for option in el.find_elements_by_tag_name('option'):
+        if label in option.text:
+            option.click()
+
+def test_empty():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = 'testing';")
+        drops = cur.fetchall()
+        mysql.connection.commit()
+        cur.execute("SET FOREIGN_KEY_CHECKS = 0")
+        mysql.connection.commit()
+        for drop in drops:
+            cur.execute(drop[0])
+            mysql.connection.commit()
+        cur.execute("SET FOREIGN_KEY_CHECKS = 1")
+        mysql.connection.commit()
+        cur.execute("SHOW tables;")
+        empty = len(cur.fetchall())+1
+        mysql.connection.commit()
+        cur.close()
+        assert empty
+
+def test_create_characters():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("SHOW tables;")
+        start = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.execute("CREATE TABLE characters(id INT(5) NOT NULL AUTO_INCREMENT, data VARCHAR(100), PRIMARY KEY(id));")
+        mysql.connection.commit()
+        cur.execute("SHOW tables;")
+        end = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.close()
+        assert abs(start - end) == 1
+
+def test_character_insert():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM characters;")
+        start = len(cur.fetchall())
+        mysql.connection.commit()
+        driver = webdriver.Chrome()
+        driver.get("https://localhost/")
+        driver.find_element_by_id("name").send_keys("Test")
+        multiselect_set_selections(driver, "type", "melee")
+        multiselect_set_selections(driver, "perk", "heavy")
+        driver.find_element_by_id("submit_new").click()
+        sleep(3)
+        cur.execute("SELECT * FROM characters;")
+        end = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.close()
+        assert abs(start-end) == 1
+        assert url_for('/') in driver.current_url
+        new_submission = driver.find_element_by_id("display_content").text
+        driver.quit()
+        assert "Test" in new_submission
+        assert "melee" in new_submission
+        assert "heavy" in new_submission
+
+def test_character_update():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        driver = webdriver.Chrome()
+        driver.get("https://localhost/")
+        multiselect_set_selections_invert(driver, "data", "Test")
+        driver.find_element_by_id("new_data").send_keys("PLACEHOLDER")
+        driver.find_element_by_id("submit_update").click()
+        sleep(3)
+        cur.execute("SELECT FROM characters WHERE data='PLACEHOLDER';")
+        selection = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.close()
+        assert selection
+        assert url_for('/') in driver.current_url
+        driver.quit()
+
+def test_character_deletion():
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        driver = webdriver.Chrome()
+        driver.get("https://localhost/")
+        multiselect_set_selections(driver, "datad", "PLACEHOLDER")
+        driver.find_element_by_id("submit_delete").click()
+        sleep(3)
+        cur.execute("SELECT * FROM characters;")
+        present = len(cur.fetchall())
+        mysql.connection.commit()
+        cur.close()
+        assert not present
+        assert url_for('/') in driver.current_url
+        driver.quit()

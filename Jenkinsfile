@@ -52,8 +52,8 @@ pipeline{
             agent {label 'master'}
             steps{
                 sh 'echo "Mining the Selenium"'
-                // sh 'python3 -m coverage run -m pytest tests/selenium_testing.py'
-                // sh 'python3 -m coverage report'
+                sh 'chmod +x /var/lib/jenkins/workspace/sfia_project_2/obfscripts/seleniumTesting.sh'
+                sh './obfscripts/seleniumTesting.sh'
                 sh 'docker stack rm test_character_stack'
             }
         }
