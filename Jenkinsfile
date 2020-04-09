@@ -5,7 +5,7 @@ pipeline{
         stage("testEnv"){
             agent {label 'master'}
             steps{
-                // sh 'echo "dev-test local install"'
+                sh 'echo "dev-test local install"'
                 // sh 'sudo apt update -y'
                 // sh 'sudo apt-get remove docker docker-engine docker.io -y'
                 // sh 'sudo apt-get purge containderd.io docker.io'
