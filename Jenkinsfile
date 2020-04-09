@@ -5,21 +5,21 @@ pipeline{
         stage("testEnv"){
             agent {label 'master'}
             steps{
-                sh 'echo "dev-test local install"'
-                sh 'sudo apt update -y'
+                // sh 'echo "dev-test local install"'
+                // sh 'sudo apt update -y'
                 // sh 'sudo apt-get remove docker docker-engine docker.io -y'
                 // sh 'sudo apt-get purge containderd.io docker.io'
                 // sh 'sudo apt-get install containerd.io'
-                sh 'sudo apt install docker.io -y'
-                sh 'sudo apt install docker-compose -y'
-                sh 'sudo systemctl start docker'
-                sh 'sudo systemctl enable docker'
-                sh 'sudo systemctl status docker'
-                sh 'sudo usermod -aG docker $USER'
-                sh 'sudo apt install software-properties-common'
-                sh 'sudo apt-add-repository --yes --update ppa:ansible/ansible'
-                sh 'sudo apt install ansible -y'
-                sh 'ansible --version'
+                // sh 'sudo apt install docker.io -y'
+                // sh 'sudo apt install docker-compose -y'
+                // sh 'sudo systemctl start docker'
+                // sh 'sudo systemctl enable docker'
+                // sh 'sudo systemctl status docker'
+                // sh 'sudo usermod -aG docker $USER'
+                // sh 'sudo apt install software-properties-common'
+                // sh 'sudo apt-add-repository --yes --update ppa:ansible/ansible'
+                // sh 'sudo apt install ansible -y'
+                // sh 'ansible --version'
             }
         }
         stage("testingInstall"){
