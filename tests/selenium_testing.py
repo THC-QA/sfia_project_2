@@ -1,6 +1,7 @@
 from flask import Flask, request, url_for
 from flask_mysqldb import MySQL
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from time import sleep
 import os
 
@@ -69,7 +70,10 @@ def test_character_insert():
         cur.execute("SELECT * FROM characters;")
         start = len(cur.fetchall())
         mysql.connection.commit()
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.binary_location = "/usr/bin/google-chrome"
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", chrome_options=chrome_options)
         driver.get("https://localhost/")
         driver.find_element_by_id("name").send_keys("Test")
         multiselect_set_selections(driver, "type", "melee")
@@ -91,7 +95,10 @@ def test_character_insert():
 def test_character_update():
     with app.app_context():
         cur = mysql.connection.cursor()
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.binary_location = "/usr/bin/google-chrome"
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", chrome_options=chrome_options)
         driver.get("https://localhost/")
         multiselect_set_selections_invert(driver, "data", "Test")
         driver.find_element_by_id("new_data").send_keys("PLACEHOLDER")
@@ -108,7 +115,10 @@ def test_character_update():
 def test_character_deletion():
     with app.app_context():
         cur = mysql.connection.cursor()
-        driver = webdriver.Chrome()
+        chrome_options = Options()
+        chrome_options.binary_location = "/usr/bin/google-chrome"
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", chrome_options=chrome_options)
         driver.get("https://localhost/")
         multiselect_set_selections(driver, "datad", "PLACEHOLDER")
         driver.find_element_by_id("submit_delete").click()

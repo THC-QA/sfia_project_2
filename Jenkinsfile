@@ -7,6 +7,8 @@ pipeline{
             steps{
                 sh 'echo "dev-test local install"'
                 // sh 'sudo apt update -y'
+                // sh 'sudo apt-get install -y unzip xvfb libxi6 libgconf-2-4'
+                // sh 'sudo apt-get install default-jdk'
                 // sh 'sudo apt-get remove docker docker-engine docker.io -y'
                 // sh 'sudo apt-get purge containderd.io docker.io'
                 // sh 'sudo apt-get install containerd.io'
