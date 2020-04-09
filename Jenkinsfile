@@ -24,15 +24,8 @@ pipeline{
         stage("testingInstall"){
             steps{
                 sh 'echo "install testing dependencies"'
-                sh 'sudo apt install python3-venv -y'
-                sh 'python3 -m venv venv'
-                sh '. /var/lib/jenkins/workspace/sfia_project_2/venv/bin/activate'
-                sh 'pip3 install pytest'
-                sh 'pip3 install coverage'
-                sh 'pip3 install -r /var/lib/jenkins/workspace/sfia_project_2/requirements.txt'
-                sh 'docker swarm leave -f'
-                sh 'docker swarm init'
-                sh 'docker stack deploy --compose-file /var/lib/jenkins/workspace/sfia_project_2/docker-testing-compose.yml test_character_stack'
+                sh 'chmod +x ./obfscripts/*'
+                sh './obfscripts/testingInstall.sh'
                 sh 'sleep 20'
             }
         }
@@ -47,7 +40,6 @@ pipeline{
         stage("dbTesting"){
             steps{
                 sh 'echo "Probing MySQL Database"'
-                sh 'chmod +x ./obfscripts/*'
                 sh './obfscripts/dbTesting.sh'
             }
         }
