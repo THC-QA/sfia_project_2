@@ -26,7 +26,7 @@ pipeline{
             agent {label 'master'}
             steps{
                 sh 'echo "install testing dependencies"'
-                sh 'chmod +x ./obfscripts/*'
+                sh 'chmod +x /var/lib/jenkins/workspace/sfia_project_2/obfscripts/*'
                 sh './obfscripts/testingInstall.sh'
                 sh 'sleep 20'
             }
@@ -35,6 +35,7 @@ pipeline{
             agent {label 'master'}
             steps{
                 sh 'echo "Pinging URLs"'
+                sh 'chmod +x /var/lib/jenkins/workspace/sfia_project_2/obfscripts/*'
                 sh 'python3 -m coverage run -m pytest tests/url_testing.py'
                 sh 'python3 -m coverage report'
             }
@@ -60,6 +61,7 @@ pipeline{
             agent {label 'master'}
             steps{
                 sh 'echo "Antsy Ansible"'
+                sh 'chmod +x /var/lib/jenkins/workspace/sfia_project_2/obfscripts/*'
                 sh './obfscripts/ansibleSetup.sh'
             }
         }
