@@ -75,7 +75,7 @@ def test_character_insert():
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
         driver.get("https://35.230.152.96/")
-        driver.find_element_by_id("name").send_keys("Test")
+        driver.find_element_by_name("name").send_keys("Test")
         multiselect_set_selections(driver, "type", "melee")
         multiselect_set_selections(driver, "perk", "heavy")
         driver.find_element_by_id("submit_new").click()
