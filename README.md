@@ -4,6 +4,24 @@
 
 Written in reference to QAC - Practical Project Specification (DevOps). This project is for the purpose of fulfilling the specification definition for the project assignment due Week 8 of the DevOps February 17 2020 intake cohort. The official working title of the project is SFIA Project 2 (independent), often reformatted to sfia_project_2 for tagging usage.
 
+#### License
+
+```Copyright (C) 2020  THC-QA
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+```
+
 **If you're trying to install this project, and are disinterested in its creation and background, find the installation guide link in the table of contents, or follow it [here](#installation-and-setup-guide).**
 
 ## Table of Contents
@@ -546,7 +564,13 @@ A Jenkins server runs pipeline builds of the project, automating the testing fun
 
 The twin concepts of continuous integration and deployment are central to the DevOps ethos, and this project demonstrates some of the core functionality behind it. By way of project contribution, builds can be triggered automatically, and testing performed locally before deployment to nodes.
 
-The use of Ansible is key to preparing the nodes by way of non-local install, and configuring them to initialise a docker swarm layer between the servers. This can then be connected to via Jenkins itself for deployment.
+The use of Ansible is key to preparing the nodes by way of non-local install, and configuring them to initialise a docker swarm layer between the servers. This can then be connected to by Jenkins itself for deployment. The ansible playbook is divided into 3 main plays:
+
+1. Checking for the install status of docker; then installing it, along with its dependencies, if it is absent.
+2. Checking for the presence of docker swarm on the nodes; initialising it if it isn't present, then allocating the join tokens to variables that can be accessed by the final step.
+3. In which the worker node is joined to the manager node, completing the swarm architecture ready for stack deployment.
+
+Given the flexibility of Ansible as a configuration management tool, this is a relatively simple approach to its usage. More nodes could be easily incorporated, and additional functionality; such as the setting of quorum dictates, or manager reassignment; added.
 
 ### Security
 
