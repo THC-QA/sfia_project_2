@@ -418,7 +418,7 @@ The code block can be split into three main segments, the setup of the drivers a
 
 Potential logo
 
-![CharGen Logo](https://i.imgur.com/BNj3aFR.gif)
+![CharGen Logo](https://i.imgur.com/MOmXgt2.gif)
 
 #### Potential Expansions
 
