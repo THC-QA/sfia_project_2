@@ -33,9 +33,8 @@ Written in reference to QAC - Practical Project Specification (DevOps). This pro
     + [CI Server Implementation](#ci-server-implementation-and-configuration)
     + [Security](#security)
     + [Branch and Merge Log](#branch-and-merge-log)
-8. [Front End Considerations](#front-end-considerations)
-9. [Improvements for Future Versions](#improvements-for-future-versions)
-10. [Installation and Setup Guide](#installation-and-setup-guide)
+8. [Improvements for Future Versions](#improvements-for-future-versions)
+9. [Installation and Setup Guide](#installation-and-setup-guide)
 + [Authors](#authors)
 + [Acknowledgements](#acknowledgements)
 
@@ -268,13 +267,13 @@ As can be seen from the representation, if compared to the previous documentatio
 
 In addition to the blockframe diagram shown in the proposal, a further blockframe diagram was produced to demonstrate the expansion of the project during its course. The expansion was largely to match the extension of the brief to include full CRUD functionality for the frontend container, whilst maintaining a single-page design.
 
-[Blockframe diagram demonstrating the progression of the front end design.](https://i.imgur.com/MjCSrTp.png)
+![Blockframe diagram demonstrating the progression of the front end design.](https://i.imgur.com/MjCSrTp.png)
 
 Notice the inclusion of UPDATE and DELETE sections to the existing form structure. Each of these follows a MySQLdb populated drop down menu, which fulfills the READ utility of the page. The pre-existing structure of the data persistence layer covers CREATE. In this way full CRUD functionality has been achieved.
 
 As front end design was not a core consideration of the project, basic HTML structure was adhered to, resulting in the following end product. Notice the similarity to the expanded blockframe diagram.
 
-[Demonstration capture of the final design state of the website homepage.](https://i.imgur.com/O2JVMmD.png)
+![Demonstration capture of the final design state of the website homepage.](https://i.imgur.com/O2JVMmD.png)
 
 A very simplistic design, but entirely covering the brief. For the purposes of avoiding leaking the server locations or user created data, a capture was taken of the test swarm homepage, and the URL was obscured. The advantages being that the website is easy to operate, and demonstrates a clear proof of concept. Further design could be carried out by a qualified web-designer, which I am not.
 
@@ -658,10 +657,6 @@ Git as a version control service is used for 4 primary functions in this project
 2. To enable webhook triggers for pipeline builds, a webhook system has been enabled between the dev branch of the repository here and the Jenkins server. Unlike an enterprise environment, the completed builds don't trigger merges, so in a sense the CI/CD functionality of the project can be considered incomplete. Mirroring this system, as mentioned in the [security](#security) section, the firewall rules of the Jenkins server have been ammended to allow the webhook to function.
 3. To allow diverse location working on the project, from home, work, and whilst travelling. So long as an internet connection is present, the project can be pulled for revision.
 4. GitHub itself, as a public hosting for the project, and to make it available for open source cooperation or download, in line with the ethos behind the movement.
-
-## Front End Considerations
-
-discussion
 
 ## Improvements for Future Versions
 
