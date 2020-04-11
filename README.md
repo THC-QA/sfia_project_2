@@ -82,7 +82,7 @@ As the project progressed, items of work passed through the progress and testing
 
 #### Should Have
 
-+ Web hooks should be used so that Jenkins recreatesand redeploys the changed application.
++ Web hooks should be used so that Jenkins recreates and redeploys the changed application.
 + The project passes through a testing environment.
 + The project is deployed to a _separate_ deployment environment.
 + Docker swarm is used over compose to enable deployment to multiple nodes.
@@ -103,7 +103,7 @@ As the project progressed, items of work passed through the progress and testing
 
 ![A picture of the trello board, started on the first week. Only the product backlog has been added. No tasks have been entered.](https://i.imgur.com/CvLeQD2.png)
 
-At the start of the project, I focussed on tasks that would not interfere with training, and the construction of the services: Starting the Kanban board [itself](https://trello.com/b/xlkzbGt0/qasfiaproject2), starting this documentation to streamline my future workflow, instituting a github repository for the project, which can be found [here](https://github.com/THC-QA/sfia_project_2), and initialising the risk assessment for the project in line with my initial understanding.
+At the start of the project, I focussed on tasks that would not interfere with training, and the construction of the services: Starting the Kanban board [itself](https://trello.com/b/xlkzbGt0/qasfiaproject2), starting this documentation to streamline my future workflow; instituting a github repository for the project, which can be found [here](https://github.com/THC-QA/sfia_project_2); and initialising the risk assessment for the project in line with my initial understanding.
 
 ### Rolling Changes
 
@@ -178,7 +178,7 @@ There are three potential takeaways from the discrepancies between the first and
 2. The appearance of new risks suggests that the initial assessment was not sufficiently wide, nor forward thinking in its scope, and better foresight could be implemented in future projects.
 3. The largely unforeseeable nature of the encountered risks demonstrates the old adage:
 
-> _"No plan survives first contact with the enemy."
+> _"No plan survives first contact with the enemy."_
 
 To further illustrate the renewed risk assessment, a modified risk matrix is displayed below.
 
@@ -691,7 +691,7 @@ To pair with this imagined sprint, a potential risk assessment has been provided
 
 ## Installation and Setup Guide
 
-1. Make sure you have access to at least 2 webservers, preferrably 3. The servers should ideally be running Ubuntu server edition 18.04, as this project is intended for that setup. You will also need a MySQL server, for the data persistence layer.
+1. Make sure you have access to at least 2 webservers, preferrably 3. The servers should ideally be running Ubuntu server edition 18.04, as this project is intended for that setup. You will also need a MySQL server, for the data persistence layer. This project made use of GCP instances, if you wish to do the same, you can sign up for it [here](https://cloud.google.com/). Two n1-standard-1 compute instances were used for the nodes, and a n1-standard-2 used for Jenkins. In addition a SQL server was used, and, as backup, a bucket containing SQL files to repopulate the database in an emergency. Google's guide to creating and starting VM instances can be found [here](https://cloud.google.com/compute/docs/instances/create-start-instance).
 2. Using ssh-keygen (guide found [here](https://www.ssh.com/ssh/keygen/)), generate keys for using SSH to connect to the servers, and ensure they have copies of your public key in the list of allowed clients.
 3. On one of them, install Jenkins, following the guide found [here](https://www.techrepublic.com/article/how-to-install-jenkins-on-ubuntu-server-18-04/). You will need port 8080 exposed in order to access the Jenkins client. Configure this in your firewall rules. For the rest of the guide, the server with Jenkins on it will be referred to as the 'Jenkins server'.
 4. SSH to the Jenkins server, and run the command `sudo su jenkins` to run as the Jenkins user. Navigate to the root directory using `cd ~` and create the file .bashrc using the command `touch .bashrc`. This will be used later.
@@ -703,7 +703,7 @@ To pair with this imagined sprint, a potential risk assessment has been provided
 10. Fork a copy of this repository, and edit the jenkinsfile to reflect your naming conventions for nodes. In the default version of this project, the nodes are expected to be named 'manager-node' and 'worker-node'.
 11. Using the guide found [here](https://embeddedartistry.com/blog/2017/12/21/jenkins-kick-off-a-ci-build-with-github-push-notifications/) configure your copy of the repository to allow webhooks.
 12. Completing the procedure, use the guide found [here](https://dzone.com/articles/adding-a-github-webhook-in-your-jenkins-pipeline) to add the webhook to your Jenkins server.
-13. Configure the firewall rules to match those found in the [security](#security) section of this README.
+13. Configure the firewall rules to match those found in the [security](#security) section of this README. Of particular importance are the Docker Swarm required ports, listed here for ease of use: TCP 2376, 2377, and 7946 _as well as_ UDP 4789, and 7946. Don't forget the double assignment of 7946 as _both_ TCP and UDP.
 14. Push your project, triggering a first build, which will fail. This is intended.
 15. SSH back to the Jenkins server and create two files in the cloned repository: api.env, and inventory.cfg
 16. The contents of the api.env file should be filled with the following environment variables: SECRETKEY, MYSQLHOST, MYSQLUSER, MYSQLPASSWORD, and MYSQLDB. These should be configured to allow access to your SQL server instance. No quotation marks are required, but no spaces are allowed. As an example `MYSECRETKEY=thisisanexamplesecretkey`, note the lack of spaces.
