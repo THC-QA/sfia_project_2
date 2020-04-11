@@ -4,19 +4,21 @@
 
 Written in reference to QAC - Practical Project Specification (DevOps). This project is for the purpose of fulfilling the specification definition for the project assignment due Week 8 of the DevOps February 17 2020 intake cohort. The official working title of the project is SFIA Project 2 (independent), often reformatted to sfia_project_2 for tagging usage.
 
+**If you're trying to install this project, and are disinterested in its creation and background, find the installation guide link in the table of contents, or follow it [here](#installation-and-setup-guide).**
+
 ## Table of Contents
 
 1. [Project Brief](#project-brief)
     + [Proposal](#proposal)
 2. [Trello Board](#trello-board)
     + [MoSCoW Analysis](#moscow-analysis)
-    + [Start Point](#start-board)
+    + [Start Point](#start-point)
     + [Rolling Changes](#rolling-changes)
     + [End Point](#end-point)
 3. [Risk Assessment](#risk-assessment)
 4. [Project Architecture](#project-architecture)
-    + [Entity Relationship Diagram](#entity-relationship-diagram)
-    + [Architecture Diagram](#architecture-diagram)
+    + [Entity Relationship Diagram](#entity-relationships)
+    + [Architecture Diagram](#overall-architecture)
     + [Issues Encountered](#issues-encountered)
 5. [Design Considerations](#design-considerations)
     + [Front End](#front-end)
