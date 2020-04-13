@@ -581,9 +581,9 @@ In order for the project to remain secure, a number of precautions were taken ov
 + The SQL server is configured to only accept connections from the 3 active VMs.
 + All of the VMs are configured to accept swarm port traffic only from each other. Details found [here](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts).
 + The Manager and Worker node are configured to act as http servers, to enable the swarm to display content.
-+ The Jenkins server allows in and outbound port 80 traffic for the dual purpose of receiving webhooks and testing swarm content. This also allows the WebHook to function as intended.
++ The Jenkins server allows in and outbound port 80 traffic for the purpose of testing swarm content.
 + To run the tests, port 5000 allows connection to the SQL server IP address.
-+ Port 8080 on the Jenkins server allows connections from the workstation, to allow configuration and builds.
++ Port 8080 on the Jenkins server allows connections from the workstation, to allow configuration and builds. It also allows access from the CIDR blocks used by GitHub for webhooks, as found [here](https://developer.github.com/v3/meta/). This data may have been depcrecated in favour of the 140.82.112.0/20 block.
 + `test.env` was copied directly to the Jenkins server to avoid exposure.
 + `api.env` was copied directly to the Jenkins server to avoid exposure.
 + `inventory.cfg` was copied directly to the Jenkins server to avoid exposure.
