@@ -2,7 +2,9 @@
 ---
 # Character Archetype Generation Microservices
 
-Written in reference to QAC - Practical Project Specification (DevOps). This project is for the purpose of fulfilling the specification definition for the project assignment due Week 8 of the DevOps February 17 2020 intake cohort. The official working title of the project is SFIA Project 2 (independent), often reformatted to sfia_project_2 for tagging usage.
+Written in reference to QAC - Practical Project Specification (DevOps). This project is for the purpose of fulfilling the specification definition for the project assignment due Week 8 of the DevOps February 17 2020 intake cohort. The official working title of the project is SFIA Project 2 (independent), often reformatted to sfia_project_2 for tagging purposes.
+
+_**To view the presentation for this project, click [here](https://docs.google.com/presentation/d/1eOZEzyWAD4w56Sqnk30eD1VMjaFbDDVO2QvdWVoPMng/edit?usp=sharing).**_
 
 #### License
 
