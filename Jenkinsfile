@@ -72,7 +72,7 @@ pipeline{
             steps{
                 // sh 'newgrp docker'
                 // sh 'sudo docker stack rm character_stack'
-                // sh 'sleep 15'
+                sh 'sleep 3'
                 sh 'sudo docker stack deploy --compose-file docker-compose.yml character_stack'
             }
         }
