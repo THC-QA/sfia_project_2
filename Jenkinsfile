@@ -71,8 +71,8 @@ pipeline{
             agent {label 'manager-node'}
             steps{
                 // sh 'newgrp docker'
-                sh 'sudo docker stack rm character_stack'
-                sh 'sleep 15'
+                // sh 'sudo docker stack rm character_stack'
+                // sh 'sleep 15'
                 sh 'sudo docker stack deploy --compose-file docker-compose.yml character_stack'
             }
         }
