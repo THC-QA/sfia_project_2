@@ -30,7 +30,7 @@ pipeline{
                 sh 'echo "install testing dependencies"'
                 sh 'chmod +x /var/lib/jenkins/workspace/sfia_project_2/obfscripts/testingInstall.sh'
                 sh './obfscripts/testingInstall.sh'
-                sh 'sleep 20'
+                sh 'sleep 15'
             }
         }
         stage("urlTesting"){
@@ -72,6 +72,7 @@ pipeline{
             steps{
                 // sh 'newgrp docker'
                 sh 'sudo docker stack rm character_stack'
+                sh 'sleep 15'
                 sh 'sudo docker stack deploy --compose-file docker-compose.yml character_stack'
             }
         }

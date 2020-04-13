@@ -74,7 +74,7 @@ def test_character_insert():
         chrome_options.binary_location = "/usr/bin/google-chrome"
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
-        driver.get("https://35.230.152.96/")
+        driver.get("https://127.0.0.1/")
         driver.find_element_by_name("name").send_keys("Test")
         multiselect_set_selections(driver, "type", "melee")
         multiselect_set_selections(driver, "perk", "heavy")
@@ -99,7 +99,7 @@ def test_character_update():
         chrome_options.binary_location = "/usr/bin/google-chrome"
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
-        driver.get("https://35.230.152.96/")
+        driver.get("https://127.0.0.1/")
         multiselect_set_selections_invert(driver, "data", "Test")
         driver.find_element_by_id("new_data").send_keys("PLACEHOLDER")
         driver.find_element_by_id("submit_update").click()
@@ -119,7 +119,7 @@ def test_character_deletion():
         chrome_options.binary_location = "/usr/bin/google-chrome"
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
-        driver.get("https://35.230.152.96/")
+        driver.get("https://127.0.0.1/")
         multiselect_set_selections(driver, "datad", "PLACEHOLDER")
         driver.find_element_by_id("submit_delete").click()
         sleep(3)
